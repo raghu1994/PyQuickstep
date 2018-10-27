@@ -2,6 +2,7 @@
 # import the generated classes
 import NetworkCli_pb2
 from quickstepresult import QuickstepResult
+from . import err
 
 class Cursor(object):
 
@@ -13,7 +14,9 @@ class Cursor(object):
         self._executed = None
         self._rows = None
 
-
+    def _check_executed(self):
+        if not self._executed:
+            raise err.ProgrammingError("execute() first")
 
     def execute(self, query, args=None):
 
@@ -27,8 +30,34 @@ class Cursor(object):
         self.get_result(result)
         return result.affected_rows
 
-
     def get_result(self, result):
 
         self._rows = result.rows
-        self._rowcount = result.affected_rows
+        self.rowcount = result.affected_rows
+
+    def fetchone(self):
+        self._check_executed()
+        if self._rows is None or self.rownumber >= self.rowcount:
+            return None
+        result = self._rows[self.rownumber]
+        self.rownumber = self.rownumber + 1
+        return result
+
+    def fetchmany(self, size=None):
+        self._check_executed()
+        if self._rows is None:
+            return ()
+        if size is None:
+            size = 1
+        last_row_index = self.rownumber + size
+        result = self._rows[self.rownumber:last_row_index]
+        self.rownumber = min(last_row_index, self.rowcount)
+        return result
+
+    def fetchall(self):
+        self._check_executed()
+        if self._rows is None:
+            return ()
+        result = self._rows[self.rownumber:]
+        self.rownumber = self.rowcount
+        return result
