@@ -2,7 +2,8 @@
 # import the generated classes
 import NetworkCli_pb2
 from quickstepresult import QuickstepResult
-from . import err
+from pyquickstep.error import databaseerror
+
 
 class Cursor(object):
 
@@ -11,12 +12,13 @@ class Cursor(object):
         self.connection = connection
         self.rownumber = 0
         self.rowcount = -1
+        self._result = None
         self._executed = None
         self._rows = None
 
     def _check_executed(self):
         if not self._executed:
-            raise err.ProgrammingError("execute() first")
+            raise databaseerror.ProgrammingError("execute() first")
 
     def execute(self, query, args=None):
 
@@ -34,6 +36,7 @@ class Cursor(object):
 
         self._rows = result.rows
         self.rowcount = result.affected_rows
+        self._result = result
 
     def fetchone(self):
         self._check_executed()
@@ -61,3 +64,9 @@ class Cursor(object):
         result = self._rows[self.rownumber:]
         self.rownumber = self.rowcount
         return result
+
+    def setinputsizes(self, *args):
+        """Following DB API guidelines. Does nothing."""
+
+    def setoutputsizes(self, *args):
+        """Following DB API guidelines. Does nothin."""
