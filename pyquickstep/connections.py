@@ -1,6 +1,5 @@
 
 import grpc
-
 # import the generated classes
 import NetworkCli_pb2_grpc
 
