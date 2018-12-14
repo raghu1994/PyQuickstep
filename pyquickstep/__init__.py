@@ -1,8 +1,8 @@
 
-from connections import  *
+from pyquickstep.connections import *
 
 
-
+name = "pyquickstep"
 apilevel = "2.0"
 threadsafety = 1 #Threads may share the module but not the connections
 paramstyle = "pyformat"
