@@ -21,7 +21,12 @@ class Cursor(object):
             raise databaseerror.ProgrammingError("execute() first")
 
     def execute(self, query, args=None):
-
+        """
+        Makes a request using GRPC with the query string and get the response parses it and returns it
+        :param query:
+        :param args:
+        :return: Parsed query result
+        """
         #have to implement getting arguments for the query
         conn = self.connection
         request = NetworkCli_pb2.QueryRequest(query=query)
@@ -39,6 +44,10 @@ class Cursor(object):
         self._result = result
 
     def fetchone(self):
+        """
+        fetches the row pointed by cursor and moves the cursor to next row
+        :return: returns row in the cursor
+        """
         self._check_executed()
         if self._rows is None or self.rownumber >= self.rowcount:
             return None
@@ -47,6 +56,11 @@ class Cursor(object):
         return result
 
     def fetchmany(self, size=None):
+        """
+        fetches the size number of rows in cursor and moves the cursor to size+1 row
+        :param size:
+        :return: size number of rows in the cursor
+        """
         self._check_executed()
         if self._rows is None:
             return ()
@@ -58,6 +72,10 @@ class Cursor(object):
         return result
 
     def fetchall(self):
+        """
+        fetches all the rows available in cursor and moves the cursor position to the end
+        :return: all the rows available in the cursor
+        """
         self._check_executed()
         if self._rows is None:
             return ()
