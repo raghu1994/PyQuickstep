@@ -35,7 +35,7 @@ class Connection():
         :return:
         """
         insecure_channel = self.host+":"+self.port
-        self.channel = grpc.insecure_channel(insecure_channel)
+        self.channel = grpc.insecure_channel(insecure_channel,[("grpc.max_receive_message_length", 20971520)])
         self.stub = NetworkCli_pb2_grpc.NetworkCliStub(self.channel)
 
     def cursor(self, cursor=None):

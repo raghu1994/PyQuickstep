@@ -2,7 +2,7 @@
 import io
 from setuptools import setup, find_packages
 
-version = "1.0.5"
+version = "1.0.6"
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
@@ -22,7 +22,7 @@ setup(
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: Implementation :: PyPy',
         'Intended Audience :: Developers',
-        'LICENSE :: OSI APPROVED :: GNU GENERAL PUBLIC LICENSE V3 (GPLV3)',
+        'License :: OSI Approved :: GNU General Public License v3 (GPLv3)',
         'Topic :: Database',
     ],
     keywords="Quickstep",
