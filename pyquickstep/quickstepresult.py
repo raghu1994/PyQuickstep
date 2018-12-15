@@ -11,17 +11,12 @@ class QuickstepResult(object):
 
 
 
-    def check_error_response(self, error_result):
-        '''
-
-        Have to check error result and throw excpetion
-        :param error_result:
-        :return:
-        '''
-
     def parse_response(self, response):
-
-        self.check_error_response(response.error_result)
+        """
+        Parses the response got from database and returns it in form of tuple
+        :param response:
+        :return: Returns tuple of result
+        """
         result_string = str(response.query_result)
         result_string_list = result_string.split(COMMON.NEWLINE)
 
@@ -30,7 +25,7 @@ class QuickstepResult(object):
             item_list = item.split(COMMON.RESULTSPLIT)
             row = []
             for item_item in item_list:
-                ii = "".join(item_item.split())
+                ii = " ".join(item_item.split())
                 row.append(ii)
             row = row[1:]
             row = row[:-1]

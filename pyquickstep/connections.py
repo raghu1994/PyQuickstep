@@ -18,6 +18,7 @@ class Connection():
         #create channel and stub
         self.connect()
 
+
     def close(self):
         """
         grpc channel is closed which closes the connection between this interface

@@ -22,7 +22,7 @@ setup(
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: Implementation :: PyPy',
         'Intended Audience :: Developers',
-        'License :: OSI Approved :: MIT License',
+        'LICENSE :: OSI APPROVED :: GNU GENERAL PUBLIC LICENSE V3 (GPLV3)',
         'Topic :: Database',
     ],
     keywords="Quickstep",
