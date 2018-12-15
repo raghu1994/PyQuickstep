@@ -16,6 +16,21 @@ class Cursor(object):
         self._executed = None
         self._rows = None
 
+    def close(self):
+
+        if self.connection is None:
+            return
+
+        self.clear_result()
+        self.connection = None
+
+    def clear_result(self):
+
+        self.rownumber = 0
+        self._result = None
+        self._executed = None
+        self._rows = None
+        self.rowcount = 0
     def _check_executed(self):
         if not self._executed:
             raise databaseerror.ProgrammingError("execute() first")
@@ -83,6 +98,20 @@ class Cursor(object):
         self.rownumber = self.rowcount
         return result
 
+    def scroll(self, value, mode="relative"):
+
+        self._check_executed()
+        if mode is "relative":
+            row_number = self.rownumber + value
+        elif mode is "absolute":
+            row_number = value
+        else:
+            raise databaseerror.ProgrammingError("Scroll mode %s is invalid" % mode)
+
+        if not (0 <= row_number < len(self._rows)):
+            raise IndexError("Index out of range")
+
+        self.rownumber = row_number
     def setinputsizes(self, *args):
         """Following DB API guidelines. Does nothing."""
 
