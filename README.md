@@ -1,5 +1,5 @@
-#PyQuickstep  
-The Quickstep Python API was designed and developed based on the guidelines from Python Database API Specification. The API is used as a access layer for Quickstep DBMS. The API contains the following modules:
+# PyQuickstep  
+The Quickstep Python API was designed and developed based on the guidelines from [Python Database API Specification](https://www.python.org/dev/peps/pep-0249/). The API is used as a access layer for [Quickstep DBMS](https://github.com/apache/incubator-quickstep). The API contains the following modules:
 
 * Connection – An instance of connection supports two methods.
     *	close() – closes the connection between API and Quickstep instance.
@@ -14,7 +14,7 @@ The Quickstep Python API was designed and developed based on the guidelines from
 * QuickstepResult – Parses the query result into tuples.
 * GPRC files – Generated files to establish connection with the Quickstep database.
 
-##Installation:  
+## Installation:  
 
 PyQuickstep is uploaded to PyPI.
 It can be installed with the following command:
@@ -22,7 +22,7 @@ It can be installed with the following command:
 `$python2 -m pip install pyquickstep`
 
 
-##Example:  
+## Example:  
 
 The following example makes use of simple table. Create the table in Quickstep database.
 
@@ -44,6 +44,6 @@ This example will print:
 `(('1', '2015-11-02', '51', '32'),)`  
 `(('2', '2015-11-01', '60', '50'),)`  
 
-##License  g
+## License  
 
 PyQuickstep is licensed under GNU GPLv3. Please see LICENSE
