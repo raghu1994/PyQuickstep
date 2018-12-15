@@ -26,23 +26,29 @@ It can be installed with the following command:
 
 The following example makes use of simple table. Create the table in Quickstep database.
 
-`CREATE TABLE Weather (cid INTEGER, recordDate DATE, highTemperature FLOAT, lowTemperature FLOAT);`  
-`INSERT INTO Weather VALUES (1, '2015-11-1', 50, 30);`    
-`INSERT INTO Weather VALUES (1, '2015-11-2', 51, 32);`    
-`INSERT INTO Weather VALUES (2, '2015-11-1', 60, 50);`
+```
+CREATE TABLE Weather (cid INTEGER, recordDate DATE, highTemperature FLOAT, lowTemperature FLOAT);  
+INSERT INTO Weather VALUES (1, '2015-11-1', 50, 30);     
+INSERT INTO Weather VALUES (1, '2015-11-2', 51, 32);    
+INSERT INTO Weather VALUES (2, '2015-11-1', 60, 50);
+```  
 
-`import pyquickstep`  
-`conn = pyquickstep.Connect('localhost', '3000')`  
-`cursor = conn.cursor()`  
-`result = cursor.execute("select * from weather")`  
-`print cursor.fetchone()`  
-`print cursor.fetchmany()`  
-`print cursor.fetchall()`
+```
+import pyquickstep  
+conn = pyquickstep.Connect('localhost', '3000')  
+cursor = conn.cursor()  
+result = cursor.execute("select * from weather")  
+print cursor.fetchone()
+print cursor.fetchmany()
+print cursor.fetchall()
+```
 
 This example will print:  
-`('1', '2015-11-01', '50', '30')`  
-`(('1', '2015-11-02', '51', '32'),)`  
-`(('2', '2015-11-01', '60', '50'),)`  
+```
+('1', '2015-11-01', '50', '30')  
+(('1', '2015-11-02', '51', '32'),)  
+(('2', '2015-11-01', '60', '50'),)  
+```
 
 ## License  
 
